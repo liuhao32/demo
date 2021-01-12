@@ -41,8 +41,8 @@ public class TestController {
     public void testExport(@RequestBody List<Device> result) throws Exception {
 
         String filePath = System.currentTimeMillis() + ".xls";
-        final Class<? extends Device> aClass = result.get(0).getClass();
-        ExcelExportUtil.initialExcel(aClass, new String[]{"错误数据导出表"});
+
+        ExcelExportUtil.initialExcel(result.get(0).getClass(), new String[]{"错误数据导出表"});
         ExcelExportUtil.fillExcelRows(result, 0);
         ExcelExportUtil.outputExcel(filePath);
     }
