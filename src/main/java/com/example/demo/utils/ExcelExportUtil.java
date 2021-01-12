@@ -52,7 +52,7 @@ public class ExcelExportUtil {
      * 初始化excel
      *
      * @param clazz      数据pojo的class类型
-     * @param sheetNames excel首行列名
+     * @param sheetNames sheet名称
      */
     public static void initialExcel(Class<?> clazz, String[] sheetNames) {
         WorkBookFactory factory = WorkBookFactory.getSingletonFactory()
@@ -108,12 +108,13 @@ public class ExcelExportUtil {
      * 填充内容
      *
      * @param pojoList 数据对象
+     * @param sheetIndex 数据对象
      * @throws Exception 异常
      */
-    public static void fillExcelRows(List<?> pojoList) throws Exception {
+    public static void fillExcelRows(List<?> pojoList, int sheetIndex) throws Exception {
         final WorkBookFactory workBookFactory = WorkBookFactory.getSingletonFactory();
         final HSSFWorkbook wb = workBookFactory.getWorkBook().getWb();
-        final HSSFSheet defaultSheet = workBookFactory.getWorkBook().getDefaultSheet();
+        final HSSFSheet defaultSheet = workBookFactory.getWorkBook().getSheet(sheetIndex);
         final HSSFPatriarch patriarch = workBookFactory.getPatriarch(defaultSheet);
 
         if (CollectionUtils.isEmpty(pojoList)) {

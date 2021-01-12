@@ -33,7 +33,7 @@ public class TestController {
         String filePath = System.currentTimeMillis() + ".xls";
 
         ExcelExportUtil.initialExcel(result.getFails().get(0).getClass(), new String[]{"错误数据导出表"});
-        ExcelExportUtil.fillExcelRows(result.getFails());
+        ExcelExportUtil.fillExcelRows(result.getFails(), 0);
         ExcelExportUtil.outputExcel(filePath);
     }
 
@@ -41,9 +41,9 @@ public class TestController {
     public void testExport(@RequestBody List<Device> result) throws Exception {
 
         String filePath = System.currentTimeMillis() + ".xls";
-
-        ExcelExportUtil.initialExcel(result.get(0).getClass(), new String[]{"错误数据导出表"});
-        ExcelExportUtil.fillExcelRows(result);
+        final Class<? extends Device> aClass = result.get(0).getClass();
+        ExcelExportUtil.initialExcel(aClass, new String[]{"错误数据导出表"});
+        ExcelExportUtil.fillExcelRows(result, 0);
         ExcelExportUtil.outputExcel(filePath);
     }
 }

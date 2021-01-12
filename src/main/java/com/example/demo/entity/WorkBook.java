@@ -25,6 +25,16 @@ public class WorkBook {
         return sheets.get(0);
     }
 
+    public HSSFSheet getSheet(int index) {
+        if (index < 0) {
+            index = 0;
+        }
+        if (index >= sheets.size()) {
+            index = sheets.size() - 1;
+        }
+        return sheets.get(index);
+    }
+
     public CellStyle getDefaultCellStyle() {
         return cellStyles.get(0);
     }
